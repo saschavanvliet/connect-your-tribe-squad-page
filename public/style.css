@@ -84,3 +84,7 @@
             font-size: 25px;
             box-sizing: border-box;
           }
+          .hover-images:hover{
+            scale: 2;
+
+          }
