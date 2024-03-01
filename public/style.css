@@ -1,0 +1,86 @@
+:root {
+    --background-color: lightpink;
+    --primary-color: rgb(9, 9, 83);
+    --secundary-color: #D1D1D1;
+    --font-family: 'Dancing Script', sans-serif;
+    --font-size: 14px;
+    }
+        
+        body {
+            background-color: var(--background-color); /* Vervang deze kleurcode door de gewenste kleur */
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            /* max-width: 414px; Maximale breedte van de body */
+            margin-left: auto; /* Centreren van de body op het scherm */
+            margin-right: auto;
+            overflow-x: hidden; /* Verbergt horizontale schuifbalken */
+            overflow-y: auto; /* Toont verticale schuifbalken indien nodig */
+        }
+/* 
+        ul {
+            background-color: grey;
+            gap: 1em;
+            
+        } */
+    
+        
+        h1 {
+            font-family: var(--font-family);
+            color: var(--primary-color);
+            font-size: 30px;
+            margin-bottom: 20px;
+            margin-top: 4em;
+            margin-left: 1.4em;
+            margin-right: 1.5em;
+            display: block;
+            padding-bottom: 0.3em;
+            border-bottom: 0.15em solid var(--primary-color);
+        }
+
+        
+        @media only screen and (min-width: 400px) {
+            main {
+                display: grid;
+                grid-template-columns: auto;
+              background-color: lightblue;
+            }
+          }
+
+        @media only screen and (min-width: 600px) {
+            main {
+                display: grid;
+                grid-template-columns: auto auto;
+              background-color: lightblue;
+            }
+            .hamburger{
+                display: none;
+            }
+          }
+
+          @media only screen and (min-width: 900px) {
+            main {
+                display: grid;
+                grid-template-columns: auto auto auto;
+              background-color: lightblue;
+            }
+            .hamburger{
+                display: none;
+            }
+          }
+
+          .tekst-na-klik{
+            display: none;
+          }
+          .tekst-na-klik-open{
+            display: block;
+          }
+
+          .mystyle {
+            width: 100%;
+            padding: 25px;
+            background-color: coral;
+            color: white;
+            font-size: 25px;
+            box-sizing: border-box;
+          }

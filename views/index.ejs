@@ -1,10 +1,51 @@
 <%- include('./partials/head') %>
 
-<h2>Students</h2>
+<header>
+
+  <nav>
+  
+  </nav>    
+      <!-- <button id="contactformulier"> -->
+      <a id=contactformulier href="https://www.labela.nl/contact">Meld je aan!</a>
+      <!-- </button> -->
+      <h1>Onze squad</h1>
+
+</header>  
+
+<main>
+<button onclick="myFunction()"> <img src="hamburger.png" class="hamburger" width="100px">  Try it</button>
+<p id="myDIV">er is geklikt</p>
+  <img src="assets/image-0.png" id="foto1" alt="Ibbie Pietersma">
+  <img src="assets/image-1.png" id="foto2" alt="Arlyn Mariaud">
+  <img src="assets/image-2.png" id="foto3" alt="Lynnelle Jays">
+  <img src="assets/image-3.png" id="foto4" alt="Sharia Duchateau">
+  <img src="assets/image-4.png" id="foto5" alt="Rianon Umbert">
+  <img src="assets/image-5.png" id="foto6" alt="Dimitry Arrighini">
+  <img src="assets/image-6.png" id="foto7" alt="Martino Sapauton">
+  <img src="assets/image-7.png" id="foto8" alt="Freedman Camfield">
+  <img src="assets/image-8.png" id="foto9" alt="Opalina Forgie">
+  <img src="assets/image-9.png" id="foto10" alt="Weber Scougall">
+  <img src="assets/image-10.png" id="foto11" alt="Justinn Ccomini">
+  <img src="assets/image-11.png" id="foto12" alt="Sande Keepence">
+  <img src="assets/image-12.png" id="foto13" alt="Cinderella Brose">
+  <img src="assets/image-13.png" id="foto14" alt="Jamal Di Domenico">
+  <img src="assets/image-14.png" id="foto15" alt="Eleanor Jeffers">
+  <img src="assets/image-15.png" id="foto16" alt="Debera Luesley">
+  <img src="assets/image-16.png" id="foto17" alt="Cobb Brimilcome">
+  <img src="assets/image-17.png" id="foto18" alt="Kristan Tinline">
+  <img src="assets/image-18.png" id="foto19" alt="Corinne Gregoire">
+  <img src="assets/image-19.png" id="foto20" alt="Mildrid Curedell">
+</main>
+
+<!-- 
+<div>
+<article>
 <ul>
   <% persons.forEach(person => { %>
     <li><a href="./person/<%= person.id %>"><%= person.name %></a>, squad_id <%= person.squad_id %></li>
   <% }) %>
 </ul>
+</article>
+</div> -->
 
 <%- include('./partials/foot') %>
