@@ -14,7 +14,7 @@ body {
   margin-left: auto;
   /* Centreren van de body op het scherm */
   margin-right: auto;
-  overflow-x: hidden;
+  overflow-x: hidden; /*Geen overflow op de x-as! */
   overflow-y: auto;
 }
 
@@ -23,18 +23,19 @@ main {
   flex-direction: column;
 }
 
-img {
-  border-radius: 10%;
-  max-width: 100%;
-  margin: 0.5em;
-  place-items: center;
+img { 
+  border-radius: 10%; /*Alle plaatjes krijgen een border radius*/
+  max-width: 100%; /* Maximale breedte om de plaatjes mooi in het midden te houden*/
+  margin: 0.5em; /*Afstand tussen de plaatjes in*/
+  place-items: center; /*Centreren*/
 }
 
-button {
+button { /*Button in het midden positioneren!*/
   display: flex;
   margin: 0 auto;
   max-width: fit-content;
   max-height: 7.5em;
+  border-radius: 10%;
 }
 
 h1 {
@@ -54,19 +55,20 @@ h2 {
   margin-left: 1.4em;
   margin-right: 1.5em;
   display: block;
-  padding-bottom: 0.3em;
+  padding-bottom: 0.3em; /*Het streepje aan de onderkant*/
   border-bottom: 0.15em solid var(--primary-color);
 }
 
-@media only screen and (min-width: 600px) {
+/* Media queries voor verschillende groottes */
+@media only screen and (min-width: 500px) {
   main {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 1fr; /*Grid met twee kolommen*/
     background-color: lightblue;
     justify-content: center;
   }
 
-  .hover-images {
+  .hover-images { /*Dit zijn de plaatjes van de mensen*/
     transition: scale 0.3s;
   }
 
@@ -74,7 +76,7 @@ h2 {
     scale: 1.0;
   }
 
-  button {
+  button { /*De button wordt naar boven verplaatst*/
     position: fixed;
     top: 1em;
     left: 1em;
@@ -82,26 +84,19 @@ h2 {
 }
 
 @media only screen and (min-width: 900px) {
-  main {
+  main { 
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr; /*Grid met drie kolommen*/
     background-color: lightblue;
   }
 }
 
-.tekst-na-klik {
-  display: none;
-}
-
-.tekst-na-klik-open {
-  display: block;
-}
-
+/* Zodat de tekst niet in beeld is voordat je er op drukt */
 p {
   display: none;
 }
 
-.hoi {
+.hoi { /*Het berichtje dat tevoorschijn komt met achtergrond als je op de button klikt*/
   width: 100%;
   padding: 25px;
   background-color: rgb(108, 149, 220);
@@ -112,17 +107,17 @@ p {
 }
 
 .hover-images {
-  transition: scale 0.3s
+  transition: scale 0.3s /*Smoothere transition van de hover!*/
 }
 
 .hover-images:hover {
-  scale: 1.5;
+  scale: 1.5; /*Grootte wordt veranderd als je over de personen images heenkomt*/
 }
 
 @media only screen and (min-width: 1200px) {
   main {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr; /*Grid met vier kolommen*/
     background-color: lightgreen;
   }
 }
