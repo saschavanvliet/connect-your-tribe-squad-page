@@ -1,90 +1,128 @@
 :root {
-    --background-color: lightpink;
-    --primary-color: rgb(9, 9, 83);
-    --secundary-color: #D1D1D1;
-    --font-family: 'Dancing Script', sans-serif;
-    --font-size: 14px;
-    }
-        
-        body {
-            background-color: var(--background-color); /* Vervang deze kleurcode door de gewenste kleur */
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            /* max-width: 414px; Maximale breedte van de body */
-            margin-left: auto; /* Centreren van de body op het scherm */
-            margin-right: auto;
-            overflow-x: hidden; /* Verbergt horizontale schuifbalken */
-            overflow-y: auto; /* Toont verticale schuifbalken indien nodig */
-        }
-/* 
-        ul {
-            background-color: grey;
-            gap: 1em;
-            
-        } */
-    
-        
-        h1 {
-            font-family: var(--font-family);
-            color: var(--primary-color);
-            font-size: 30px;
-            margin-bottom: 20px;
-            margin-top: 4em;
-            margin-left: 1.4em;
-            margin-right: 1.5em;
-            display: block;
-            padding-bottom: 0.3em;
-            border-bottom: 0.15em solid var(--primary-color);
-        }
+  --background-color: lightpink;
+  --primary-color: rgb(9, 9, 83);
+  --secundary-color: #D1D1D1;
+  --font-family: 'Dancing Script', sans-serif;
+  --font-size: 14px;
+}
 
-        
-        @media only screen and (min-width: 400px) {
-            main {
-                display: grid;
-                grid-template-columns: auto;
-              background-color: lightblue;
-            }
-          }
+body {
+  background-color: var(--background-color);
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  margin-left: auto;
+  /* Centreren van de body op het scherm */
+  margin-right: auto;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
 
-        @media only screen and (min-width: 600px) {
-            main {
-                display: grid;
-                grid-template-columns: auto auto;
-              background-color: lightblue;
-            }
-            .hamburger{
-                display: none;
-            }
-          }
+main {
+  display: flex;
+  flex-direction: column;
+}
 
-          @media only screen and (min-width: 900px) {
-            main {
-                display: grid;
-                grid-template-columns: auto auto auto;
-              background-color: lightblue;
-            }
-            .hamburger{
-                display: none;
-            }
-          }
+img {
+  border-radius: 10%;
+  max-width: 100%;
+  margin: 0.5em;
+  place-items: center;
+}
 
-          .tekst-na-klik{
-            display: none;
-          }
-          .tekst-na-klik-open{
-            display: block;
-          }
+button {
+  display: flex;
+  margin: 0 auto;
+  max-width: fit-content;
+  max-height: 7.5em;
+}
 
-          .mystyle {
-            width: 100%;
-            padding: 25px;
-            background-color: coral;
-            color: white;
-            font-size: 25px;
-            box-sizing: border-box;
-          }
-          .hover-images:hover{
-            scale: 2;
+h1 {
+  font-family: var(--font-family);
+  color: var(--primary-color);
+  font-size: 69px;
+  display: block;
+  text-align: center;
+}
 
-          }
+h2 {
+  font-family: var(--font-family);
+  color: var(--primary-color);
+  font-size: 30px;
+  margin-bottom: 20px;
+  margin-top: 1em;
+  margin-left: 1.4em;
+  margin-right: 1.5em;
+  display: block;
+  padding-bottom: 0.3em;
+  border-bottom: 0.15em solid var(--primary-color);
+}
+
+@media only screen and (min-width: 600px) {
+  main {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    background-color: lightblue;
+    justify-content: center;
+  }
+
+  .hover-images {
+    transition: scale 0.3s;
+  }
+
+  .hover-images:hover {
+    scale: 1.0;
+  }
+
+  button {
+    position: fixed;
+    top: 1em;
+    left: 1em;
+  }
+}
+
+@media only screen and (min-width: 900px) {
+  main {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    background-color: lightblue;
+  }
+}
+
+.tekst-na-klik {
+  display: none;
+}
+
+.tekst-na-klik-open {
+  display: block;
+}
+
+p {
+  display: none;
+}
+
+.hoi {
+  width: 100%;
+  padding: 25px;
+  background-color: rgb(108, 149, 220);
+  color: white;
+  font-size: 25px;
+  box-sizing: border-box;
+  display: block;
+}
+
+.hover-images {
+  transition: scale 0.3s
+}
+
+.hover-images:hover {
+  scale: 1.5;
+}
+
+@media only screen and (min-width: 1200px) {
+  main {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    background-color: lightgreen;
+  }
+}
