@@ -12,8 +12,12 @@ p {
 }
 
 h1 {
-    padding: 1em;
+    padding: 20px;
     margin: 0;
+}
+
+.filter {
+  padding: 20px;
 }
 
 .hart-link {

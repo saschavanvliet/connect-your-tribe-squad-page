@@ -1,0 +1,28 @@
+body {
+    background: #FFC5C5;
+    margin: 0;
+}
+
+header {
+    background: #FF9A9A;
+}
+
+p {
+    color: black;
+}
+
+h1 {
+    padding: 1em;
+    margin: 0;
+}
+
+article {
+    align-self: center;
+    background-color: #f4f4f4; 
+    border-radius: 8px; 
+    text-align: center; 
+    margin-left: 15%; 
+    margin-right: 15%;
+    margin-bottom: 12em;
+    padding-bottom: 2em;
+}

@@ -1,6 +1,11 @@
-<h1>Data-Driven Web</h1>
+<header><h1>FDND - LOVECITY - YEAR 1</h1></header>
+<link rel="stylesheet" href="/person.css">
 
-<p>Ik ben dus {{ person.name }}</p>
+<h1> {{person.name}} </h1>
+
+<article>
+<section>
+<p>Ik ben dus {{ person.name }} </p>
 
 <p>Het is vandaag {{ 'now' | date: "%d-%m-%Y-%H:%M:%S" }}</p>
 
@@ -10,4 +15,16 @@
 
 <p>Wat is mijn haarkleur? {{ person.custom.haircolor }}
 <p>Wat is mijn favoriete nummer? {{ person.custom.fav_song }}
+</section>
 
+<img src="{{ person.avatar }}" alt="{{ person.name }}">
+</section>
+</article>
+
+<style>
+body {
+    background: {{ person.fav_color }};
+}
+</style>
+
+{% render 'partials/foot.liquid', squads: squads %}
