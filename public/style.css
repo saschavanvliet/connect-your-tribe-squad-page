@@ -3,11 +3,6 @@ body {
     margin: 0;
 }
 
-main {
-    margin-left: 1em;
-    margin-right: 1em;
-}
-
 header {
     background: #FF9A9A;
 }
@@ -30,17 +25,17 @@ h1 {
   }
   
   .hart-link::before {
-    content: "♥";  /* Gebruik het hartteken */
+    content: "♥";  
     position: absolute;
-    left: -30px;  /* Plaats het hartje een beetje naar links van de tekst */
+    left: -30px;  
     top: 50%;
-    transform: translateY(-50%);  /* Centreer het hartje verticaal */
-    font-size: 50px;  /* Maak het hart groot */
-    color: red;  /* Stel de kleur in naar wens */
+    transform: translateY(-50%);  
+    font-size: 50px;  
+    color: red;  
   }
   
   .hart-link:hover::before {
-    color: pink;  /* Verander de kleur bij hover */
+    color: pink;  
   }
 
   .filter-1H {
@@ -65,8 +60,8 @@ h1 {
   }
 
    .grid-item:hover {
-    transform: scale(1.03);
-  }
+    transform: scale(1.03);  
+}
   
   .grid-item img {
     width: 100%;

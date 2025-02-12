@@ -18,8 +18,9 @@
 
 <div class="grid-container">
   {% for person in persons %}
-    <a href="/squad1G/:squad_id/person/:id">
+    <a href="/squad1H/{{ person.id }}">
     <article class="grid-item">
+      {{ person.fav_color }}
       <p>{{ person.name }}</p>
       <img src="{{ person.avatar }}" alt="{{ person.name }}">
     </article>

@@ -64,7 +64,7 @@ app.post('/', async function (request, response) {
 
 // Maak een GET route voor een detailpagina met een route parameter, id
 // Zie de documentatie van Express voor meer info: https://expressjs.com/en/guide/routing.html#route-parameters
-app.get('/squad1H/:id', async function (request, response) {
+app.get('/squad1H/', async function (request, response) {
   // Gebruik de request parameter id en haal de juiste persoon uit de WHOIS API op
   const personResponse = await fetch('https://fdnd.directus.app/items/person/?fields=*,squads.squad_id.name&filter={"squads":{"squad_id":{"name":"1H"}}}&sort=name')
   
@@ -76,9 +76,18 @@ app.get('/squad1H/:id', async function (request, response) {
   response.render('squad1H.liquid', {persons: personResponseJSON.data, squads: squadResponseJSON.data})
 })
 
+app.get('/squad1H/:id', async function (request, response) {
+  const personResponse =   await fetch("https://fdnd.directus.app/items/person/" + request.params.id)
+  const personResponseJSON = await personResponse.json()
+
+  // Render de detailpagina van de persoon
+  response.render('person.liquid', {person: personResponseJSON.data, squads: squadResponseJSON.data})
+});
+
+
 // Maak een GET route voor een detailpagina met een route parameter, id
 // Zie de documentatie van Express voor meer info: https://expressjs.com/en/guide/routing.html#route-parameters
-app.get('/squad1G/:id', async function (request, response) {
+app.get('/squad1G/', async function (request, response) {
   // Gebruik de request parameter id en haal de juiste persoon uit de WHOIS API op
   const personResponse = await fetch('https://fdnd.directus.app/items/person/?fields=*,squads.squad_id.name&filter={%22squads%22:{%22squad_id%22:{%22name%22:%221G%22}}}&sort=name')
   
@@ -89,14 +98,6 @@ app.get('/squad1G/:id', async function (request, response) {
   // Geef ook de eerder opgehaalde squad data mee aan de view
   response.render('squad1G.liquid', {persons: personResponseJSON.data, squads: squadResponseJSON.data})
 })
-
-app.get('/squad1G/:squad_id/person/:id', async function (request, response) {
-  const personResponse = await fetch('https://fdnd.directus.app/items/person/?fields=*,squads.squad_id.name&filter={%22squads%22:{%22squad_id%22:{%22name%22:%221G%22}}}&sort=name')
-  const personResponseJSON = await personResponse.json()
-
-  // Render de detailpagina van de persoon
-  response.render('person.liquid', {person: personResponseJSON.data [0], squads: squadResponseJSON.data [0]})
-});
 
 // Stel het poortnummer in waar express op moet gaan luisteren
 app.set('port', process.env.PORT || 8080)
