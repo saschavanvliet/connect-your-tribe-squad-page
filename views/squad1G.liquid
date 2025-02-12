@@ -1,0 +1,18 @@
+{% render 'partials/head.liquid', title: person.name %}
+
+<h1>Studenten uit Squad 1G</h1>
+
+<div class="grid-container">
+  {% for person in persons %}
+    <a href="/squad1G/:squad_id{{ person.squad_id }}/person/:id{{ person.id }}"> 
+    <article class="grid-item">
+      <p>{{ person.name }}</p>
+      <img src="{{ person.avatar }}" alt="{{ person.name }}">
+    </article>
+    </a>
+  {% endfor %}
+</div>
+
+<a href="/">Back</a>
+
+{% render 'partials/foot.liquid', squads: squads %}

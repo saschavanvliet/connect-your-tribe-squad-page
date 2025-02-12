@@ -1,0 +1,100 @@
+body {
+    background: #FFC5C5;
+    margin: 0;
+}
+
+main {
+    margin-left: 1em;
+    margin-right: 1em;
+}
+
+header {
+    background: #FF9A9A;
+}
+
+p {
+    color: black;
+}
+
+h1 {
+    padding: 1em;
+    margin: 0;
+}
+
+.hart-link {
+    position: relative;
+    text-decoration: none;
+    font-size: 60px;
+    color: #333;
+    font-family: Arial, sans-serif;
+  }
+  
+  .hart-link::before {
+    content: "♥";  /* Gebruik het hartteken */
+    position: absolute;
+    left: -30px;  /* Plaats het hartje een beetje naar links van de tekst */
+    top: 50%;
+    transform: translateY(-50%);  /* Centreer het hartje verticaal */
+    font-size: 50px;  /* Maak het hart groot */
+    color: red;  /* Stel de kleur in naar wens */
+  }
+  
+  .hart-link:hover::before {
+    color: pink;  /* Verander de kleur bij hover */
+  }
+
+  .filter-1H {
+    display: flex;
+    padding: 1em;
+    cursor: pointer;
+  }
+
+.grid-container {
+    display: grid;
+    grid-template-columns: 1fr; 
+    gap: 20px; 
+    padding: 20px; 
+  }
+  
+  .grid-item {
+    background-color: #f4f4f4; 
+    padding: 10px;
+    border-radius: 8px; 
+    text-align: center; 
+    transition: transform 0.3s ease;
+  }
+
+   .grid-item:hover {
+    transform: scale(1.03);
+  }
+  
+  .grid-item img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px; 
+  }
+  
+  .grid-item p {
+    font-size: 1.2em;
+    font-weight: bold;
+    margin-top: 10px;
+  }
+
+  a {
+    text-decoration: none; 
+  }
+   
+  /* Ipad/tablet breakpoint */
+  @media (min-width: 601px) and (max-width: 1024px) {
+    .grid-container {
+      grid-template-columns: repeat(2, 1fr); 
+    }
+  }
+  
+  /* Desktop breakpoint */
+  @media (min-width: 1025px) {
+    .grid-container {
+      grid-template-columns: repeat(3, 1fr); 
+    }
+  }  
+  
