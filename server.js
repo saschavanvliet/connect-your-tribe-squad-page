@@ -84,6 +84,14 @@ app.get('/squad1H/:id', async function (request, response) {
   response.render('person.liquid', {person: personResponseJSON.data, squads: squadResponseJSON.data})
 });
 
+app.get('/squad1G/:id', async function (request, response) {
+  const personResponse =   await fetch("https://fdnd.directus.app/items/person/" + request.params.id)
+  const personResponseJSON = await personResponse.json()
+
+  // Render de detailpagina van de persoon
+  response.render('person.liquid', {person: personResponseJSON.data, squads: squadResponseJSON.data})
+});
+
 
 // Maak een GET route voor een detailpagina met een route parameter, id
 // Zie de documentatie van Express voor meer info: https://expressjs.com/en/guide/routing.html#route-parameters

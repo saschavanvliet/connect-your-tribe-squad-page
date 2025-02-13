@@ -1,28 +1,41 @@
-body {
-    background: #FFC5C5;
+ul {
     margin: 0;
+    padding: 0;
+    list-style: none; 
 }
 
-header {
-    background: #FF9A9A;
-}
-
-p {
-    color: black;
-}
-
-h1 {
-    padding: 1em;
+li {
     margin: 0;
+    padding: 0;
 }
 
-article {
+section {
+    background: pink;
     align-self: center;
-    background-color: #f4f4f4; 
     border-radius: 8px; 
     text-align: center; 
     margin-left: 15%; 
     margin-right: 15%;
-    margin-bottom: 12em;
+    margin-bottom: 2em;
+    margin-top: 0.5em;
     padding-bottom: 2em;
+    padding-top: 1em;
+}
+
+article {
+    align-self: center;
+    background: #f4f4f4; 
+    border-radius: 8px; 
+    text-align: center; 
+    margin-left: 15%; 
+    margin-right: 15%;
+    margin-top: 2em;
+    margin-bottom: 2em;
+    padding-bottom: 1em;
+}
+
+img {
+    width: 70%;;
+    height: auto;
+    border-radius: 8px; 
 }
