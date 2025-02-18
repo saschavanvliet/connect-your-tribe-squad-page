@@ -70,7 +70,7 @@ const API =  'https://fdnd.directus.app/items/person/'
 // Ik heb een GET route gemaakt voor de detailpagina voor squad 1H. Ik heb een request gemaakt voor de juiste route parameter. 
 app.get('/squad1H/', async function (request, response) {
   // Nu maak ik een variabele aan waar ik de directus website aan koppel. Deze site is dus al gefilterd op de squadnaam en iedereen die daarin zit.
-  const personResponse = await fetch(API + '?fields=*,squads.squad_id.name&filter={%22squads%22:{%22squad_id%22:{%22name%22:%221G%22}}}&sort=name')
+  const personResponse = await fetch(API + '?fields=*,squads.squad_id.name&filter={"squads":{"squad_id":{"name":"1H"}}}&sort=name')
   // En daarvan haal ik de JSON op
   const personResponseJSON = await personResponse.json()
 

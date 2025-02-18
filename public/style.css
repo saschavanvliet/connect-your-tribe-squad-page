@@ -56,6 +56,25 @@ h3 {
   transform: scale(1.03); 
 }
 
+@keyframes zwevend-hartje {
+  0% {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-100px) scale(1.5);
+    opacity: 0;
+  }
+}
+
+.hartje {
+  position: absolute;
+  color: red;
+  font-size: 16px;
+  animation: zwevend-hartje 1s ease-out;
+  pointer-events: none; /* Voorkomt dat het kliks blokkeert */
+}
+
 /* Filterfunctie die nog niet werkt */
 .filter-1H {
   display: flex;
