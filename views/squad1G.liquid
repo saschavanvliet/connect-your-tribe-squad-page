@@ -3,7 +3,7 @@
 <main>
 <h2>Studenten uit Squad 1G</h2>
 
-<div class="grid-container">
+<main class="grid-container">
   {% for person in persons %}
     <a href="/squad1G/{{ person.id }}">
       <article class="grid-item">
@@ -16,7 +16,6 @@
       </article>
     </a>
   {% endfor %}
-</div>
 </main>
 
 {% render 'partials/foot.liquid', squads: squads %}

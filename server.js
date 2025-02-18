@@ -1,33 +1,38 @@
-// Importeer het npm package Express (uit de door npm aangemaakte node_modules map)
-// Deze package is geïnstalleerd via `npm install`, en staat als 'dependency' in package.json
+// Ik heb een express package geimporteerd. Deze wordt opgehaald uit json packages. Express is een framework binnen Node.JS en 
+// JavaScript zit hier standaard in.
 import express from 'express'
 
-// Importeer de Liquid package (ook als dependency via npm geïnstalleerd)
+// Hierna heb importeer ik de Liquid package uit de json packages. Liquid zal gebruikt worden om dynamisch te werken in html. 
+// Deze wordt dus ook als dependency via npm geïnstalleerd.
 import { Liquid } from 'liquidjs';
 
-// Je kunt de volgende URLs uit onze API gebruiken:
+// Vervolgens zijn er drie verschillende sites die ik kan gebruiken om dingen in mijn site dynamisch op te halen. /person zal het meest
+// gebruikt worden in deze site om informatie per persoon op te halen.
+
 // - https://fdnd.directus.app/items/tribe
 // - https://fdnd.directus.app/items/squad
 // - https://fdnd.directus.app/items/person
-// En combineren met verschillende query parameters als filter, sort, search, etc.
-// Gebruik hiervoor de documentatie van https://directus.io/docs/guides/connect/query-parameters
-// En de oefeningen uit https://github.com/fdnd-task/connect-your-tribe-squad-page/blob/main/docs/squad-page-ontwerpen.md
 
-// Haal alle eerstejaars squads uit de WHOIS API op van dit jaar (2024–2025)
+// Tijdens het gebruiken van deze websites kan je de url zelf aanpassen. Zo kan je specifiekere dingen ophalen uit een object bijvoorbeeld. 
+// Je kan bijvoorbeeld gebruik maken van quary parameters als filter, sort en search. Deze staan hier uitgelegd: https://directus.io/docs/guides/connect/query-parameters.
+// Met sort: kan je sorteren op volgordes, dus verjaardag lag-hoog. Met filter kan je verschillende dingen eruit filteren. Dus alleen mensen uit 2002 bijvoorbeeld. 
+// Ik heb geoefend met de oefeningen uit https://github.com/fdnd-task/connect-your-tribe-squad-page/blob/main/docs/squad-page-ontwerpen.md om dit beter te snappen. Zie https://github.com/saschavanvliet/connect-your-tribe-profile-card/blob/main/views/oefenen.liquid.
+// Zie ook de documentatie van Express voor meer info over routes en Express: https://expressjs.com/en/guide/routing.html#route-parameters
+
+// Nu maak ik een variabele aan waarmee ik alle eerstejaars squads uit de WHOIS API op van dit jaar (2024–2025) aanroep:
 const squadResponse = await fetch('https://fdnd.directus.app/items/squad?filter={"_and":[{"cohort":"2425"},{"tribe":{"name":"FDND Jaar 1"}}]}')
 
 // Lees van de response van die fetch het JSON object in, waar we iets mee kunnen doen
 const squadResponseJSON = await squadResponse.json()
 
-// Controleer de data in je console (Let op: dit is _niet_ de console van je browser, maar van NodeJS, in je terminal)
-// console.log(squadResponseJSON)
+// ^^ Deze variabelen heb ik nog niet gebruikt in mijn site, maar deze komen waarschijnlijk in de komende week wel van pas.
 
 
-// Maak een nieuwe Express applicatie aan, waarin we de server configureren
+// Nu maak ik een nieuwe Express applicatie aan, waarin ik de server kan configureren. De server.js is belangrijk om routes bijvoorbeeld aan te kunnen maken.
 const app = express()
 
-// Gebruik de map 'public' voor statische bestanden (resources zoals CSS, JavaScript, afbeeldingen en fonts)
-// Bestanden in deze map kunnen dus door de browser gebruikt worden
+// Ik maak een 'public' aan waar statische bestanden (resources zoals CSS, JavaScript, afbeeldingen en fonts) ingezet kunnen worden.
+// Bestanden in deze map kunnen dus door de browser gebruikt worden.
 app.use(express.static('public'))
 
 // Stel Liquid in als 'view engine'
@@ -42,18 +47,14 @@ app.set('views', './views')
 app.use(express.urlencoded({extended: true}))
 
 
-// Om Views weer te geven, heb je Routes nodig
+// Om Views weer te geven, zijn er Routes nodig. Hiermee kan je dus data ophalen die in principe lokaal zijn opgeslagen. Dit is dus
+// wat omslachtiger dan wanneer je een website puur statisch zou bouwen.
 // Maak een GET route voor de index
 app.get('/', async function (request, response) {
-  // Haal alle personen uit de WHOIS API op, van dit jaar
-  
-  // personResponseJSON bevat gegevens van alle personen uit alle squads van dit jaar
-  // Je zou dat hier kunnen filteren, sorteren, of zelfs aanpassen, voordat je het doorgeeft aan de view
-
-  // Render index.liquid uit de views map en geef de opgehaalde data mee als variabele, genaamd persons
-  // Geef ook de eerder opgehaalde squad data mee aan de view
   response.render('index.liquid',)
 })
+
+// ^^ Ik heb nog geen data opgehaald op de indexpagina, daarom staan er geen variabelen bij. Ik heb de squads in twee GET-routes verdeeld.
 
 // Maak een POST route voor de index; hiermee kun je bijvoorbeeld formulieren afvangen
 app.post('/', async function (request, response) {
@@ -62,52 +63,48 @@ app.post('/', async function (request, response) {
   response.redirect(303, '/')
 })
 
-// Maak een GET route voor een detailpagina met een route parameter, id
-// Zie de documentatie van Express voor meer info: https://expressjs.com/en/guide/routing.html#route-parameters
+// ^^ Deze post-route heb ik nog niet gebruikt, omdat we deze stof nog niet hebben gehad. 
+
+
+// Ik heb een GET route gemaakt voor de detailpagina voor squad 1H. Ik heb een request gemaakt voor de juiste route parameter. 
 app.get('/squad1H/', async function (request, response) {
-  // Gebruik de request parameter id en haal de juiste persoon uit de WHOIS API op
+
+  // Nu maak ik een variabele aan waar ik de directus website aan koppel. Deze site is dus al gefilterd op de squadnaam en iedereen die daarin zit.
   const personResponse = await fetch('https://fdnd.directus.app/items/person/?fields=*,squads.squad_id.name&filter={"squads":{"squad_id":{"name":"1H"}}}&sort=name')
-  
-  // En haal daarvan de JSON op
+  // En daarvan haal ik de JSON op
   const personResponseJSON = await personResponse.json()
-  
-  // Render student.liquid uit de views map en geef de opgehaalde data mee als variable, genaamd person
-  // Geef ook de eerder opgehaalde squad data mee aan de view
-  response.render('squad1H.liquid', {persons: personResponseJSON.data, squads: squadResponseJSON.data})
+
+  // Vervolgens render ik squad1H.liquid uit de views map en geef de opgehaalde data mee als variable, genaamd person
+  response.render('squad1H.liquid', {persons: personResponseJSON.data})
 })
 
-app.get('/squad1H/:id', async function (request, response) {
+// Vervolgens wil ik een id meegeven aan de route parameter. Dit houdt in dat als je op een willekeurig persoon klikt binnen een squad, er een aparte pagina van die persoon met alle door jou meegegeven gegevens aan wordt gemaakt.
+app.get('/squad1H/:id', async function (request, response) { 
   const personResponse =   await fetch("https://fdnd.directus.app/items/person/" + request.params.id)
   const personResponseJSON = await personResponse.json()
 
-  // Render de detailpagina van de persoon
-  response.render('person.liquid', {person: personResponseJSON.data, squads: squadResponseJSON.data})
+  // Nu render ik de detailpagina van de persoon. Deze route heb ik person.liquid genoemd. 
+  response.render('person.liquid', {person: personResponseJSON.data})
 });
 
+// ZIE ROUTE 1H VOOR UITLEG!! Ik heb een GET route gemaakt voor de detailpagina voor squad 1G. Ik heb een request gemaakt voor de juiste route parameter. 
+app.get('/squad1G/', async function (request, response) {
+  const personResponse = await fetch('https://fdnd.directus.app/items/person/?fields=*,squads.squad_id.name&filter={%22squads%22:{%22squad_id%22:{%22name%22:%221G%22}}}&sort=name')
+  const personResponseJSON = await personResponse.json()
+
+  response.render('squad1G.liquid', {persons: personResponseJSON.data})
+})
+
+// ZIE ROUTE 1H VOOR UITLEG OVER ID OPVRAGEN!!
 app.get('/squad1G/:id', async function (request, response) {
   const personResponse =   await fetch("https://fdnd.directus.app/items/person/" + request.params.id)
   const personResponseJSON = await personResponse.json()
 
   // Render de detailpagina van de persoon
-  response.render('person.liquid', {person: personResponseJSON.data, squads: squadResponseJSON.data})
+  response.render('person.liquid', {person: personResponseJSON.data})
 });
 
-
-// Maak een GET route voor een detailpagina met een route parameter, id
-// Zie de documentatie van Express voor meer info: https://expressjs.com/en/guide/routing.html#route-parameters
-app.get('/squad1G/', async function (request, response) {
-  // Gebruik de request parameter id en haal de juiste persoon uit de WHOIS API op
-  const personResponse = await fetch('https://fdnd.directus.app/items/person/?fields=*,squads.squad_id.name&filter={%22squads%22:{%22squad_id%22:{%22name%22:%221G%22}}}&sort=name')
-  
-  // En haal daarvan de JSON op
-  const personResponseJSON = await personResponse.json()
-  
-  // Render student.liquid uit de views map en geef de opgehaalde data mee als variable, genaamd person
-  // Geef ook de eerder opgehaalde squad data mee aan de view
-  response.render('squad1G.liquid', {persons: personResponseJSON.data, squads: squadResponseJSON.data})
-})
-
-// Stel het poortnummer in waar express op moet gaan luisteren
+// Ik heb het poortnummer ingesteld waar express op moet gaan luisteren. Ik heb de port het nummer 8080 gegeven zodat deze niet hetzelfde is als mijn visitekaartje.
 app.set('port', process.env.PORT || 8080)
 
 // Start express op, haal daarbij het zojuist ingestelde poortnummer op
@@ -115,7 +112,6 @@ app.listen(app.get('port'), function () {
   // Toon een bericht in de console en geef het poortnummer door
   console.log(`Application started on http://localhost:${app.get('port')}`)
 })
-
 
 
 //Site van klas 1H: 'https://fdnd.directus.app/items/person/?fields=*,squads.squad_id.name&filter={"squads":{"squad_id":{"name":"1H"}}}&sort=name'

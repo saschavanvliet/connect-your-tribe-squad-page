@@ -3,7 +3,7 @@
 <main>
 <h2>Studenten uit Squad 1H</h2>
 
-<div class="filter"
+<section class="filter-squad"
 <p> Filter op: </p>
 
 <select class="filter-1H">
@@ -16,9 +16,9 @@
   <option value="Rocket">Rocket</option>
   <option value="Blaze">Blaze</option>
 </select>
-</div>
+</section>
 
-<div class="grid-container">
+<main class="grid-container">
   {% for person in persons %}
     <a href="/squad1H/{{ person.id }}">
       <article class="grid-item">
@@ -31,7 +31,6 @@
       </article>
     </a>
   {% endfor %}
-</div>
 </main>
 
 {% render 'partials/foot.liquid', squads: squads %}
