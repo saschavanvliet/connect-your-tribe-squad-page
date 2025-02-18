@@ -27,7 +27,6 @@ const squadResponseJSON = await squadResponse.json()
 
 // ^^ Deze variabelen heb ik nog niet gebruikt in mijn site, maar deze komen waarschijnlijk in de komende week wel van pas.
 
-
 // Nu maak ik een nieuwe Express applicatie aan, waarin ik de server kan configureren. De server.js is belangrijk om routes bijvoorbeeld aan te kunnen maken.
 const app = express()
 
@@ -65,12 +64,13 @@ app.post('/', async function (request, response) {
 
 // ^^ Deze post-route heb ik nog niet gebruikt, omdat we deze stof nog niet hebben gehad. 
 
+// Ik maak een API-variabele aan om makkelijker aan de slag te kunnen gaan.
+const API =  'https://fdnd.directus.app/items/person/'
 
 // Ik heb een GET route gemaakt voor de detailpagina voor squad 1H. Ik heb een request gemaakt voor de juiste route parameter. 
 app.get('/squad1H/', async function (request, response) {
-
   // Nu maak ik een variabele aan waar ik de directus website aan koppel. Deze site is dus al gefilterd op de squadnaam en iedereen die daarin zit.
-  const personResponse = await fetch('https://fdnd.directus.app/items/person/?fields=*,squads.squad_id.name&filter={"squads":{"squad_id":{"name":"1H"}}}&sort=name')
+  const personResponse = await fetch(API + '?fields=*,squads.squad_id.name&filter={%22squads%22:{%22squad_id%22:{%22name%22:%221G%22}}}&sort=name')
   // En daarvan haal ik de JSON op
   const personResponseJSON = await personResponse.json()
 
@@ -80,16 +80,16 @@ app.get('/squad1H/', async function (request, response) {
 
 // Vervolgens wil ik een id meegeven aan de route parameter. Dit houdt in dat als je op een willekeurig persoon klikt binnen een squad, er een aparte pagina van die persoon met alle door jou meegegeven gegevens aan wordt gemaakt.
 app.get('/squad1H/:id', async function (request, response) { 
-  const personResponse =   await fetch("https://fdnd.directus.app/items/person/" + request.params.id)
+  const personResponse =   await fetch(API + request.params.id) // + Request params id houdt in dat je de id wil toevoegen aan de routeparameter die er staat.
   const personResponseJSON = await personResponse.json()
 
-  // Nu render ik de detailpagina van de persoon. Deze route heb ik person.liquid genoemd. 
+  // Nu render ik de detailpagina van de persoon. Deze route heb ik person.liquid genoemd. Deze pagina wordt dus geladen wanneer ik binnen de squad1H-route de link inklik om naar de personroute te navigeren.
   response.render('person.liquid', {person: personResponseJSON.data})
 });
 
 // ZIE ROUTE 1H VOOR UITLEG!! Ik heb een GET route gemaakt voor de detailpagina voor squad 1G. Ik heb een request gemaakt voor de juiste route parameter. 
 app.get('/squad1G/', async function (request, response) {
-  const personResponse = await fetch('https://fdnd.directus.app/items/person/?fields=*,squads.squad_id.name&filter={%22squads%22:{%22squad_id%22:{%22name%22:%221G%22}}}&sort=name')
+  const personResponse = await fetch(API + '?fields=*,squads.squad_id.name&filter={%22squads%22:{%22squad_id%22:{%22name%22:%221G%22}}}&sort=name')
   const personResponseJSON = await personResponse.json()
 
   response.render('squad1G.liquid', {persons: personResponseJSON.data})
@@ -97,7 +97,7 @@ app.get('/squad1G/', async function (request, response) {
 
 // ZIE ROUTE 1H VOOR UITLEG OVER ID OPVRAGEN!!
 app.get('/squad1G/:id', async function (request, response) {
-  const personResponse =   await fetch("https://fdnd.directus.app/items/person/" + request.params.id)
+  const personResponse =   await fetch(API + request.params.id)
   const personResponseJSON = await personResponse.json()
 
   // Render de detailpagina van de persoon
@@ -113,7 +113,7 @@ app.listen(app.get('port'), function () {
   console.log(`Application started on http://localhost:${app.get('port')}`)
 })
 
-
-//Site van klas 1H: 'https://fdnd.directus.app/items/person/?fields=*,squads.squad_id.name&filter={"squads":{"squad_id":{"name":"1H"}}}&sort=name'
-//Site van klas 1G: 'https://fdnd.directus.app/items/person/?fields=*,squads.squad_id.name&filter={%22squads%22:{%22squad_id%22:{%22name%22:%221G%22}}}&sort=name'
-//Alle persons:'https://fdnd.directus.app/items/person/?sort=name&fields=*,squads.squad_id.name,squads.squad_id.cohort&filter={"_and":[{"squads":{"squad_id":{"tribe":{"name":"FDND Jaar 1"}}}},{"squads":{"squad_id":{"cohort":"2425"}}}]}'
+// Sites onder elkaar gezet voor duidelijkheid.
+// Site van klas 1H: 'https://fdnd.directus.app/items/person/?fields=*,squads.squad_id.name&filter={"squads":{"squad_id":{"name":"1H"}}}&sort=name'
+// Site van klas 1G: 'https://fdnd.directus.app/items/person/?fields=*,squads.squad_id.name&filter={%22squads%22:{%22squad_id%22:{%22name%22:%221G%22}}}&sort=name'
+// Alle persons:'https://fdnd.directus.app/items/person/?sort=name&fields=*,squads.squad_id.name,squads.squad_id.cohort&filter={"_and":[{"squads":{"squad_id":{"tribe":{"name":"FDND Jaar 1"}}}},{"squads":{"squad_id":{"cohort":"2425"}}}]}'
