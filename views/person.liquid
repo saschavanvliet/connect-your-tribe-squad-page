@@ -5,14 +5,14 @@
 <article>
     <h2>{{ person.name }}</h2>
     <section>
-        <p>Birthdate: {{ person.birthdate | date: "%d-%m-%Y" }}</p>
-        <p>Team: {{ person.team }}</p>
+        <p>Geboortedatum: {{ person.birthdate | date: "%d-%m-%Y" }}</p>
+        <p>Ik zit in team: {{ person.team }}</p>
         <details>
-            <summary>Favorite code-related stuff</summary>
+            <summary>Favoriete code-gerelateerde dingen:</summary>
             <ul>
-                <li>Favorite HTML attribute: {{ person.fav_attribute }}</li>
-                <li>Favorite CSS property: {{ person.fav_property }}</li>
-                <li>Favorite JavaScript feature: {{ person.fav_feature }}</li>
+                <li>Favoriet HTML attribuut: {{ person.fav_attribute }}</li>
+                <li>Favoriete CSS property: {{ person.fav_property }}</li>
+                <li>Favoriete JavaScript feature: {{ person.fav_feature }}</li>
             </ul>
         </details>
         <p> {{ person.bio }} </p>

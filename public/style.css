@@ -134,7 +134,7 @@ a {
 
 /* Terugknop voor naar indexpagina */
 .backbutton {
-  background: #ff008c85;
+  background: #fb88c8;
   color: black;
   border: 1.5px dashed #333;
   padding: 10px 20px;
@@ -143,10 +143,11 @@ a {
   border-radius: 5px;
   transition: 0.2s ease, background 0.3s ease;
   margin-bottom: 1em;
+  z-index: 9999;
 }
 
 .backbutton:hover {
-  background: #ff2e04bb;
+  background: #f4785f;
   transform: scale(1.1);
 }
 
