@@ -9,11 +9,10 @@ De instructie vind je in: [INSTRUCTIONS](https://github.com/fdnd-task/connect-yo
   * [Beschrijving](#beschrijving)
   * [Kenmerken](#kenmerken)
   * [Installatie](#installatie)
-  * [Gebruik](#gebruik)
   * [Bronnen](#bronnen)
   * [Licentie](#licentie)
 
-## Beschrijving
+## De site
 <!-- In de Beschrijving staat hoe je project er uit ziet, hoe het werkt en wat je er mee kan. -->
 <!-- Voeg een mooie poster visual toe 📸 -->
 Dit is het uiteindelijke ontwerp van de individuele site die ik heb gemaakt: 
@@ -30,14 +29,13 @@ Github pages live link:
 https://connect-your-tribe-squad-page-dk0o.onrender.com
 
 ## Kenmerken
-<!-- Bij Kenmerken staat welke technieken zijn gebruikt en hoe. Wat is de HTML structuur? Wat zijn de belangrijkste dingen in CSS? Wat is er met Javascript gedaan en hoe? Misschien heb je een framework of library gebruikt? -->
+Ik heb een skelet in HTML en CSS gemaakt met dynamische data uit een groot JSON bestand verkregen vanuit de fdnd directus website. Daarnaast heb twee routes opgezet voor de squads 1H en 1G door gebruik te maken van specifieke filters in de API-aanroepen. Hierdoor worden alleen de gegevens van de studenten uit die squads opgehaald en weergegeven. Daarnaast heb ik een route geconfigureerd die ervoor zorgt dat ik via de id van de directus-URL de details van een specifieke student weer kan geven.
 
 ## Installatie
-<!-- Bij Installatie staat stap-voor-stap beschreven hoe je de development omgeving moet inrichten om aan de repository te kunnen werken. -->
-
-## Gebruik
+Ik heb gebruik gemaakt van Express en Liquid in Node.js als het gaat om dynamische data. Voor statische data heb ik gebruik gemaakt van html, css en javascript.
 
 ## Bronnen
+https://expressjs.com/
 
 ## Licentie
 
